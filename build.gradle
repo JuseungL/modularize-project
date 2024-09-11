@@ -10,7 +10,7 @@ repositories {
     mavenCentral()
 }
 
-subprojects {
+allprojects { // 루트 프로젝트 + 서브 프로젝트
     group = 'com.juseungl'
     version = '0.0.1-SNAPSHOT'
     java {
@@ -18,15 +18,17 @@ subprojects {
             languageVersion = JavaLanguageVersion.of(21)
         }
     }
+    repositories {
+        mavenCentral()
+    }
+}
 
+subprojects { // 서브 프로젝트
     apply plugin: "java"
     apply plugin: 'java-library'
     apply plugin: "io.spring.dependency-management"
     apply plugin: "org.springframework.boot"
 
-    repositories {
-        mavenCentral()
-    }
 
     configurations {
         compileOnly {
@@ -37,8 +39,6 @@ subprojects {
     dependencies {
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
-        implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-        annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'
         annotationProcessor "jakarta.annotation:jakarta.annotation-api"
         annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 

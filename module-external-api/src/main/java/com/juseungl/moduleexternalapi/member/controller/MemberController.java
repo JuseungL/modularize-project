@@ -1,7 +1,7 @@
 package com.juseungl.moduleexternalapi.member.controller;
 
 import com.juseungl.moduledomain.domains.member.domain.Member;
-import com.juseungl.moduledomain.domains.member.service.MemberService;
+import com.juseungl.moduledomain.domains.member.service.MemberCommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
+    private final MemberCommandService memberCommandService;
 
     @GetMapping("/test")
     public String test() {
@@ -21,7 +21,7 @@ public class MemberController {
                 .provider("naver")
                 .build();
 
-        memberService.createMember(member); // MemberService를 통해 회원 생성
+        memberCommandService.createMember(member); // MemberService를 통해 회원 생성
         return "hi";
     }
 }

@@ -1,5 +1,6 @@
 package com.juseungl.moduledomain.domains.member.domain;
 
+import com.juseungl.moduledomain.domains.auditing.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 //@SQLRestriction("deleted_at IS NULL")
 //@SQLDelete(sql = "UPDATE user SET deleted_at = NOW() WHERE id = ?")
-public class Member {
+public class Member extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
