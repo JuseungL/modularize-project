@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Entity
 @Table(name = "member")
@@ -18,21 +20,30 @@ public class Member extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String provider;
 
-    @Column(nullable = false, name = "provider_id")
-    private String providerId;
+    @Column(nullable = false, name = "social_id")
+    private String socialId;
 
+    @Column(nullable = false)
+    private String nickname;
+
+    @Column(nullable = false, length = 255)
     private String email;
 
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
+    @Column(name = "deleted_at") // 삭제 시각 저장
+    private LocalDateTime deletedAt = null;
+
     @Builder
-    public Member(String name, String provider, String providerId, String email) {
-        this.name = name;
+    public Member(String provider, String socialId, String nickname, String email, Role role) {
+        this.nickname = nickname;
         this.provider = provider;
-        this.providerId = providerId;
+        this.socialId = socialId;
         this.email = email;
+        this.role = role;
     }
 }

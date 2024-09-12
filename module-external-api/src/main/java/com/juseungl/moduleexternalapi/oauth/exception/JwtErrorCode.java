@@ -1,4 +1,4 @@
-package com.juseungl.modulecommon.jwt;
+package com.juseungl.moduleexternalapi.oauth.exception;
 
 import com.juseungl.modulecommon.exception.BaseErrorCode;
 import lombok.Getter;

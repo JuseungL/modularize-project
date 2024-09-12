@@ -12,16 +12,16 @@ public class MemberController {
 
     private final MemberCommandService memberCommandService;
 
-    @GetMapping("/test")
-    public String test() {
-        Member member = Member.builder()
-                .name("이주승")
-                .email("juseung0619@gmail.com")
-                .providerId("1234")
-                .provider("naver")
-                .build();
-
-        memberCommandService.createMember(member); // MemberService를 통해 회원 생성
-        return "hi";
-    }
+//    @GetMapping("/test")
+//    public String test() {
+//        Member member = Member.builder()
+//                .name("이주승")
+//                .email("juseung0619@gmail.com")
+//                .providerId("1234")
+//                .provider("naver")
+//                .build();
+//
+//        memberCommandService.createMember(member); // MemberService를 통해 회원 생성
+//        return "hi";
+//    }
 }

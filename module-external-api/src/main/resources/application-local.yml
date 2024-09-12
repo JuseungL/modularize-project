@@ -2,12 +2,6 @@ server:
   port: 8080
 
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/multi?serverTimezone=Asia/Seoul
-    username: root
-    password: 7404juseung!
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     show-sql: true
     hibernate:
@@ -17,11 +11,29 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         show_sql: true # hibernate 로그 남길지
 
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-name: kakao
+            client-id:
+            redirect-uri: "http://localhost:8080/login/oauth2/code/kakao"
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_post
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-name-attribute: id
+        callback-uri: "http://localhost:3000"
+
 jwt:
-  secret: "dkqorhvmekgkwlaksdltlrksdpanjfajrdmausdksehlrpTwlckawk"
-  token:
-    access-expiration-time: 9999999
-    refresh-expiration-time: 9999999
+  issuer: juseung0619@gmail.com
+  secret-key: adjflkqerlkmadkfljqierjokdgjlqrj32ijelwkd9auj2li4j1lkemadlkfqer09djfokadlhqtjkanvjkafdoriqo39e
+  access-expired-time: 86400000   # 1 day in milliseconds
+  refresh-expired-time: 604800000  # 7 days in milliseconds
 
 cors:
   allowed:

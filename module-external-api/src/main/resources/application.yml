@@ -11,8 +11,7 @@ spring:
   config:
     activate:
       on-profile: local
-    import: application-prod.yml, application-domain.yml
-#    application-redis-local.yml
+    import: application-local.yml, application-domain.yml, application-redis-local.yml
 
 ---
 spring:
@@ -20,7 +19,3 @@ spring:
     activate:
       on-profile: prod
 #    import: application-prod.yml, application-redis-prod.yml
-
-
-server:
-  port: 8080

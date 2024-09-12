@@ -1,11 +1,9 @@
 spring:
+  config:
+    activate:
+      on-profile: local
+
   data:
     redis:
       host: localhost
       port: 6379
-      password:
-  jwt:
-    issuer: juseung0619@gmail.com
-    secret-key: adjflkqerlkmadkfljqierjokdgjlqrj32ijelwkd9auj2li4j1lkemadlkfqer09djfokadlhqtjkanvjkafdoriqo39e
-    access-expired-time: 86400000   # 1 day in milliseconds
-    refresh-expired-time: 604800000  # 7 days in milliseconds
