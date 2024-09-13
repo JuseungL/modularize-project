@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/multi?serverTimezone=Asia/Seoul&characterEncoding=utf8
     username: root
-    password: temp
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 # Redission?

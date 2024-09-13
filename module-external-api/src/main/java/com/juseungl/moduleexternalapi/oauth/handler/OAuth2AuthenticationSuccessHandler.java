@@ -13,10 +13,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 
+/**
+ *  OAuth2 로그인 성공 시 호출되는 handler
+ */
 @RequiredArgsConstructor
 @Component
 public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-
     private final JwtUtil jwtUtil;
     @Value("${spring.security.oauth2.client.callback-uri}")
     private String oauth2CallbackUri;
