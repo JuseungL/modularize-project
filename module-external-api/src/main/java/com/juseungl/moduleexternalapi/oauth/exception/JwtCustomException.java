@@ -1,5 +1,7 @@
-package com.juseungl.modulecommon.exception;
+package com.juseungl.moduleexternalapi.oauth.exception;
 
+import com.juseungl.modulecommon.exception.BaseErrorCode;
+import com.juseungl.modulecommon.exception.CustomException;
 import lombok.Getter;
 
 @Getter

@@ -1,7 +1,7 @@
 package com.juseungl.moduleexternalapi.oauth.jwt;
 
-import com.juseungl.modulecommon.exception.JwtCustomException;
-import com.juseungl.modulecommon.exception.JwtErrorCode;
+import com.juseungl.moduleexternalapi.oauth.exception.JwtCustomException;
+import com.juseungl.moduleexternalapi.oauth.exception.JwtErrorCode;
 import com.juseungl.modulecommon.utils.RedisUtil;
 import com.juseungl.moduleexternalapi.oauth.dto.JwtResponseDto;
 import com.juseungl.moduleexternalapi.oauth.service.CustomUserDetailsService;

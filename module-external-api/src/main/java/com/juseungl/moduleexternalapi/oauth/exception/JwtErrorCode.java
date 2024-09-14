@@ -1,5 +1,6 @@
-package com.juseungl.modulecommon.exception;
+package com.juseungl.moduleexternalapi.oauth.exception;
 
+import com.juseungl.modulecommon.exception.BaseErrorCode;
 import com.juseungl.modulecommon.response.ApiResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

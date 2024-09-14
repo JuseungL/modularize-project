@@ -1,7 +1,7 @@
 package com.juseungl.moduleexternalapi.oauth.jwt;
 
-import com.juseungl.modulecommon.exception.CommonErrorCode;
-import com.juseungl.modulecommon.exception.JwtErrorCode;
+import com.juseungl.modulecommon.exception.global.CommonErrorCode;
+import com.juseungl.moduleexternalapi.oauth.exception.JwtErrorCode;
 import com.juseungl.modulecommon.response.ApiResponse;
 import com.juseungl.modulecommon.utils.HttpResponseUtil;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -39,9 +39,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (jwtToken != null) {
             try {
-                log.info("토큰 검증 시작");
                 jwtUtil.validateTokenV2(jwtToken);
-                log.info("토큰 검증 종료");
                 setAuthentication(jwtToken);
             } catch (SecurityException | MalformedJwtException e) {
                 log.warn("잘못된 토큰: {}", e.getMessage());

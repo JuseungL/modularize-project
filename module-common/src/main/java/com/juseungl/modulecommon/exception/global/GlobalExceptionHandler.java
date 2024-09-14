@@ -1,5 +1,6 @@
-package com.juseungl.modulecommon.exception;
+package com.juseungl.modulecommon.exception.global;
 
+import com.juseungl.modulecommon.exception.JwtCustomException;
 import com.juseungl.modulecommon.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
