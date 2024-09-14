@@ -60,7 +60,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 httpResponseUtil.setErrorResponse(response, HttpStatus.UNAUTHORIZED, ApiResponse.fail(JwtErrorCode.INVALID_TOKEN.getHttpStatus(), "잘못된 토큰 인수: " + e.getMessage()));
                 return;
             } catch (UsernameNotFoundException e) {
-                // 이 예외는 토큰 검증이 아닌 사용자 조회 과정에서 발생할 수 있으므로, 별도로 처리합니다.
                 log.warn("사용자를 찾을 수 없음: {}", e.getMessage());
                 httpResponseUtil.setErrorResponse(response, HttpStatus.UNAUTHORIZED, ApiResponse.fail(JwtErrorCode.NOT_FOUND_MEMBER.getHttpStatus(), "사용자를 찾을 수 없습니다: " + e.getMessage()));
                 return;
