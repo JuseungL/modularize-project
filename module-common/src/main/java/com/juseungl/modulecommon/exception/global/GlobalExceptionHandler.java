@@ -1,6 +1,5 @@
 package com.juseungl.modulecommon.exception.global;
 
-
 import com.juseungl.modulecommon.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -21,7 +20,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected ResponseEntity<ApiResponse<Object>> handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
-        return ApiResponse.fail(CommonErrorCode.INVALID_PARAMETER, e.getMessage());
+        return ApiResponse.fail(CommonErrorCode.INVALID_PARAMETER.getHttpStatus(), e.getMessage());
     }
 
     /**
@@ -30,7 +29,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoSuchElementException.class)
     protected ResponseEntity<ApiResponse<Void>> handleNoSuchElementException(NoSuchElementException e) {
-        return ApiResponse.fail(CommonErrorCode.NOT_FOUND, e.getMessage());
+        return ApiResponse.fail(CommonErrorCode.NOT_FOUND.getHttpStatus(), e.getMessage());
     }
 
     /**
@@ -39,7 +38,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleException(Exception ex) {
-        return ApiResponse.fail(CommonErrorCode.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return ApiResponse.fail(CommonErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus(), ex.getMessage());
     }
 }
 

@@ -34,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private Map<String, Object> createAttributes(Member member) {
         Map<String, Object> attributes = new HashMap<>();
+        attributes.put("id", member.getId());
         attributes.put("provider", member.getProvider());
         attributes.put("socialId", member.getSocialId());
         attributes.put("nickname", member.getNickname());
@@ -41,4 +42,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         attributes.put("role", member.getRole());
         return attributes;
     }
+
 }

@@ -26,7 +26,8 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-module-external-api/.env
+module-domain/src/main/resources/application-domain.yml
+module-external-api/src/main/resources/application-local.yml
 
 
 ### NetBeans ###

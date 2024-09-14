@@ -1,9 +1,11 @@
 package com.juseungl.modulecommon.exception.global;
 
 import com.juseungl.modulecommon.exception.BaseErrorCode;
+import com.juseungl.modulecommon.response.ApiResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  * 공통 예외 처리
@@ -17,4 +19,9 @@ public enum CommonErrorCode implements BaseErrorCode {
 
     private final HttpStatus httpStatus;
     private final String message;
+
+    @Override
+    public ResponseEntity<ApiResponse<Void>> toResponseEntity() {
+        return ApiResponse.fail(httpStatus, message);
+    }
 }

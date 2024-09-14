@@ -16,9 +16,4 @@ public class JwtCustomException extends CustomException {
     public JwtCustomException(BaseErrorCode errorCode, String message) {
         super(errorCode, message);
     }
-
-    @Override
-    public ResponseEntity<ApiResponse<Void>> toApiResponse() {
-        return ApiResponse.fail(getErrorCode(), getMessage());
-    }
 }

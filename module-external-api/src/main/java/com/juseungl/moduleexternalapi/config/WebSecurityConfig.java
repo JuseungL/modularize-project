@@ -42,15 +42,11 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(corsConfigurer -> corsConfigurer.configurationSource(corsConfigurationSource()))
-                .httpBasic(AbstractHttpConfigurer::disable) // UsernamePasswordAuthenticationFilter.class 실행X. eo
-                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)// UsernamePasswordAuthenticationFilter.class 실행X. eo
                 .logout(AbstractHttpConfigurer::disable)
-                .headers(c -> c.frameOptions(
-                        HeadersConfigurer.FrameOptionsConfig::disable).disable())
-                .sessionManagement(c ->
-                        c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
+                .headers(c -> c.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable).disable())
+                .sessionManagement(c ->c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
                                         new AntPathRequestMatcher("/"),
@@ -59,47 +55,25 @@ public class WebSecurityConfig {
                                         new AntPathRequestMatcher("/login/oauth2/code/**"),
                                         new AntPathRequestMatcher("/oauth2/**"),
                                         new AntPathRequestMatcher("/api/v1/public/**")
-
-                                ).permitAll()
-                                .anyRequest().authenticated()
+                                ).permitAll() // 위의 경로들은 인증 없이 접근 가능
+                                .anyRequest().authenticated() // 그 외의 모든 요청은 인증 필요
                 )
-
                 .oauth2Login(oauth ->
                         oauth.userInfoEndpoint(c -> c.userService(customOAuth2UserService))
-                                .successHandler(oAuth2AuthenticationSuccessHandler)
-                                .failureHandler(oAuth2AuthenticationFailureHandler)
+                            .successHandler(oAuth2AuthenticationSuccessHandler)
+                            .failureHandler(oAuth2AuthenticationFailureHandler)
                 )
-
-                .addFilterBefore(jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class)
-
-                .exceptionHandling((exceptions) -> exceptions
-                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                        .accessDeniedHandler(jwtAccessDeniedHandler));
-
-
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(
+                        (exceptions) -> exceptions
+                                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                                .accessDeniedHandler(jwtAccessDeniedHandler)
+                );
         return http.build();
     }
-
-    @Bean
+    @Bean // SecurityFilterChain에서 제외
     public WebSecurityCustomizer webSecurityCustomizer() {
         return web -> web.ignoring()
                 .requestMatchers("/error", "/favicon.ico", "/swagger-ui/**", "/api-docs/**");
     }
-
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "POST", "GET", "DELETE", "PUT"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-
 }

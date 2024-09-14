@@ -90,16 +90,16 @@ public class JwtUtil {
 
         Instant issuedAt = Instant.now().truncatedTo(ChronoUnit.SECONDS);
 
-        Date accessExpiration = Date.from(issuedAt.plus(jwtProperties.getAccessExpiredTime(), ChronoUnit.SECONDS));
-        Date refreshExpiration = Date.from(issuedAt.plus(jwtProperties.getRefreshExpiredTime(), ChronoUnit.SECONDS));
+        Date accessExpiration = Date.from(issuedAt.plus(jwtProperties.getAccessExpiredTime(), ChronoUnit.MILLIS));
+        Date refreshExpiration = Date.from(issuedAt.plus(jwtProperties.getRefreshExpiredTime(), ChronoUnit.MILLIS));
         Date issuedDate = new Date();
-        String name = authentication.getName();
+        String memberId = authentication.getName();
         var accessToken = Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setIssuer(jwtProperties.getIssuer())
                 .setIssuedAt(issuedDate)
                 .setExpiration(accessExpiration)
-                .setSubject(name)
+                .setSubject(memberId)
                 .signWith(secretKey, SignatureAlgorithm.HS512)
                 .claim(AUTHORITIES, authorities)
                 .compact();
@@ -109,12 +109,12 @@ public class JwtUtil {
                 .setIssuer(jwtProperties.getIssuer())
                 .setIssuedAt(issuedDate)
                 .setExpiration(refreshExpiration)
-                .setSubject(name)
+                .setSubject(memberId)
                 .signWith(secretKey, SignatureAlgorithm.HS512)
                 .claim(AUTHORITIES, authorities)
                 .compact();
 
-        redisUtil.saveAsValue(name, refreshToken, jwtProperties.getRefreshExpiredTime(), TimeUnit.SECONDS);
+        redisUtil.saveAsValue(memberId, refreshToken, jwtProperties.getRefreshExpiredTime(), TimeUnit.MILLISECONDS);
         return new JwtResponseDto(accessToken, refreshToken);
     }
 

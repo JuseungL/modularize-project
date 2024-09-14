@@ -1,5 +1,6 @@
 package com.juseungl.moduleexternalapi.oauth.handler;
 
+import com.juseungl.modulecommon.utils.RedisUtil;
 import com.juseungl.moduleexternalapi.oauth.dto.JwtResponseDto;
 import com.juseungl.moduleexternalapi.oauth.jwt.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import java.io.IOException;
 @Component
 public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     private final JwtUtil jwtUtil;
+    private final RedisUtil redisUtil;
     @Value("${spring.security.oauth2.client.callback-uri}")
     private String oauth2CallbackUri;
     @Override
