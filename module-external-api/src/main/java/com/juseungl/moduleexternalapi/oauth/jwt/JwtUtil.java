@@ -1,9 +1,9 @@
 package com.juseungl.moduleexternalapi.oauth.jwt;
 
+import com.juseungl.modulecommon.exception.JwtCustomException;
+import com.juseungl.modulecommon.exception.JwtErrorCode;
 import com.juseungl.modulecommon.utils.RedisUtil;
 import com.juseungl.moduleexternalapi.oauth.dto.JwtResponseDto;
-import com.juseungl.moduleexternalapi.oauth.exception.JwtCustomException;
-import com.juseungl.moduleexternalapi.oauth.exception.JwtErrorCode;
 import com.juseungl.moduleexternalapi.oauth.service.CustomUserDetailsService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -82,6 +82,21 @@ public class JwtUtil {
             throw new JwtCustomException(JwtErrorCode.INVALID_TOKEN, "Invalid token argument: " + e.getMessage());
         }
     }
+
+    public boolean validateTokenV2(String token) {
+        try {
+            Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            // 예외 처리 로직을 필터로 이동하였으므로, 여기서는 예외를 그대로 던집니다.
+            throw e;
+        }
+    }
+
+
 
     public JwtResponseDto issueToken(Authentication authentication) {
         String authorities = authentication.getAuthorities().stream()

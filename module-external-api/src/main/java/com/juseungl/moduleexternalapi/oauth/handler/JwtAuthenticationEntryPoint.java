@@ -1,10 +1,7 @@
 package com.juseungl.moduleexternalapi.oauth.handler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.juseungl.modulecommon.response.ApiResponse;
 import com.juseungl.modulecommon.utils.HttpResponseUtil;
-import com.juseungl.moduleexternalapi.oauth.exception.AuthErrorCode;
-import com.juseungl.moduleexternalapi.oauth.exception.JwtErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;

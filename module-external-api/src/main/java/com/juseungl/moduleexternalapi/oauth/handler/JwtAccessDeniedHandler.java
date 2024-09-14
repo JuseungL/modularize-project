@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static com.juseungl.moduleexternalapi.oauth.exception.JwtErrorCode.FORBIDDEN_ACCESS;
+import static com.juseungl.modulecommon.exception.JwtErrorCode.FORBIDDEN_ACCESS;
+
 
 /**
  * 인가 과정에서 생길 exception을 처리

@@ -1,8 +1,6 @@
 package com.juseungl.modulecommon.exception;
 
-import com.juseungl.modulecommon.response.ApiResponse;
 import lombok.Getter;
-import org.springframework.http.ResponseEntity;
 
 @Getter
 public class CustomException extends RuntimeException {

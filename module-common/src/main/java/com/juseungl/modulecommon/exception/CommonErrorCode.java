@@ -1,4 +1,4 @@
-package com.juseungl.modulecommon.exception.global;
+package com.juseungl.modulecommon.exception;
 
 import com.juseungl.modulecommon.exception.BaseErrorCode;
 import com.juseungl.modulecommon.response.ApiResponse;

@@ -1,10 +1,6 @@
-package com.juseungl.moduleexternalapi.oauth.exception;
+package com.juseungl.modulecommon.exception;
 
-import com.juseungl.modulecommon.exception.CustomException;
-import com.juseungl.modulecommon.response.ApiResponse;
-import com.juseungl.modulecommon.exception.BaseErrorCode;
 import lombok.Getter;
-import org.springframework.http.ResponseEntity;
 
 @Getter
 public class JwtCustomException extends CustomException {
