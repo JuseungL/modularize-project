@@ -1,6 +1,5 @@
 package com.juseungl.modulecommon.exception.global;
 
-import com.juseungl.modulecommon.exception.JwtCustomException;
 import com.juseungl.modulecommon.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +26,6 @@ public class GlobalExceptionHandler {
         return ApiResponse.fail(CommonErrorCode.NOT_FOUND.getHttpStatus(), e.getMessage());
     }
 
-    @ExceptionHandler(JwtCustomException.class)
-    public ResponseEntity<ApiResponse<Void>> handleJwtCustomException(JwtCustomException ex) {
-        HttpStatus status = ex.getBaseErrorCode().getHttpStatus();
-        String message = ex.getMessage();
-        return ApiResponse.fail(status, message);
-    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleException(Exception ex) {

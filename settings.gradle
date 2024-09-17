@@ -3,4 +3,3 @@ rootProject.name = 'modularize'
 include('module-common')
 include('module-domain')
 include('module-external-api')
-include('module-batch')

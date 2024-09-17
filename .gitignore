@@ -28,6 +28,7 @@ out/
 
 module-domain/src/main/resources/application-domain.yml
 module-external-api/src/main/resources/application-local.yml
+module-batch/src/main/resources/application-batch.yml
 
 
 ### NetBeans ###
