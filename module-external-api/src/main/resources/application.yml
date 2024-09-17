@@ -11,7 +11,11 @@ spring:
   config:
     activate:
       on-profile: local
-    import: application-local.yml, application-domain.yml, application-redis-local.yml
+    import:
+      - application-local.yml
+      - application-domain.yml
+      - application-redis-local.yml
+      - application-batch.yml
 
 ---
 spring:
