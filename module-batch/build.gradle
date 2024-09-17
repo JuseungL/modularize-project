@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+bootJar { enabled = true }
+jar { enabled = false }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':module-domain')
+}
