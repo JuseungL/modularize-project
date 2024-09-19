@@ -24,7 +24,7 @@ import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor
-public class TransferDataBatch {
+public class ChunkBatchConfig {
     private final JobRepository jobRepository;
     private final PlatformTransactionManager platformTransactionManager;
     private final BeforeEntityRepository beforeEntityRepository;
