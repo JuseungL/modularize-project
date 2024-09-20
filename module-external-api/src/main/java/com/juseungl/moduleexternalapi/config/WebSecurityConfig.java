@@ -50,7 +50,8 @@ public class WebSecurityConfig {
                                         new AntPathRequestMatcher("/login/oauth2/code/**"),
                                         new AntPathRequestMatcher("/oauth2/**"),
                                         new AntPathRequestMatcher("/api/v1/public/**"),
-                                        new AntPathRequestMatcher("/batch-execute")
+                                        new AntPathRequestMatcher("/batch-execute"),
+                                        new AntPathRequestMatcher("/api/v1/members")
                                 ).permitAll() // 위의 경로들은 인증 없이 접근 가능
                                 .anyRequest().authenticated() // 그 외의 모든 요청은 인증 필요
                 )
